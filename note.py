@@ -35,6 +35,16 @@ PITCHES = {
 
 
 class Note:
+    """"
+    Represents a musical note in terms of pitch and perspective.
+
+    Attributes:
+    -----------
+    pitch : str
+        The pitch of the note, represented as a string (e.g. "C", "D#", "Gb").
+    perspective : str
+        The pitch perspective of the note, represented as "#" for sharp or "b" for flat.
+    """
     
     position = 0
     perspective = ""
