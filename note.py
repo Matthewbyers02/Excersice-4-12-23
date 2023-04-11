@@ -49,15 +49,21 @@ class Note:
     position = 0
     perspective = ""
     
+    position = 0
+    perspective = ""
+    
     def __init__(self, position, perspective = None):
         if isinstance(position, str):
-            if self.position.len > 1:
-                self.perspective = self.position[1]
-            self.position = POSITIONS[position] 
-        else:
+            self.position = POSITIONS[position]
+            if perspective != None:
+                self.perspective = perspective
+            elif position[-1] in ("#", "b"):
+                self.perspective = position[-1]
+            else:
+                perspective = None
+        elif isinstance(position, int) and 0 <= position <= 11:
             self.position = position
-        
-        self.perspective = perspective
+            self.perspective = perspective
         
     def __invert__(self):
         if self.perspective == 'b':
