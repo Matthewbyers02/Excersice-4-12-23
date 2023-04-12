@@ -75,14 +75,12 @@ class Note:
         return Note(self.position, self.perspective)
         
     def __add__(self, num):
-        placeholder = (self.position + num) / 12
-        addNote = (placeholder, self.perspective)
-        return addNote
+        self.position = (self.position + num) % 12
+        return Note(self.position, self.perspective)
 
     def __sub__(self, num):
-        placeholder = abs(self.position - num) / 12
-        subNote = (placeholder, self.perspective)
-        return subNote
+        self.position = abs((self.position - num) % 12)
+        return Note(self.position, self.perspective)
 
     def __rightShift__(self, other): 
         rdistance = abs(self.position - other.position) / 12
