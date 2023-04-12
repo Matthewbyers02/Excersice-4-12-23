@@ -82,16 +82,29 @@ class Note:
         self.position = abs((self.position - num) % 12)
         return Note(self.position, self.perspective)
 
-    def __rightShift__(self, other): 
-        rdistance = abs(self.position - other.position) / 12
+    def __rshift__(self, other):
+        if isinstance(other, Note): 
+            rdistance = (self.position - other.position) % 12
         return rdistance
 
-    def __leftShift__(self, other): 
-        ldistance = abs(other.position - self.position) / 12
+    def __lshift__(self, other):
+        if isinstance(other, Note): 
+            ldistance = (other.position - self.position) % 12
         return ldistance
 
     def __repr__(self): #idk how to do ths one and if this naming is correct
         return f"Note({self.position}, {self.perspective!r})"
-            
+    
+    def __str__(self):
+        pitch_names = PITCHES[self.position]
+        if self.perspective is None:
+            if len(pitch_names) == 1:
+                return pitch_names[0]
+            else:
+                return f"{pitch_names[0]}/{pitch_names[1]}"
+        elif self.perspective == "#":
+            return pitch_names[0] if "#" in pitch_names[0] else pitch_names[1]
+        elif self.perspective == "b":
+            return pitch_names[0] if "b" in pitch_names[0] else pitch_names[1]
     
     
