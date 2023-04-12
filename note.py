@@ -49,8 +49,6 @@ class Note:
     position = 0
     perspective = ""
     
-    position = 0
-    perspective = ""
     
     def __init__(self, position, perspective = None):
         if isinstance(position, str):
@@ -60,7 +58,7 @@ class Note:
             elif position[-1] in ("#", "b"):
                 self.perspective = position[-1]
             else:
-                perspective = None
+                self.perspective = None
         elif isinstance(position, int) and 0 <= position <= 11:
             self.position = position
             self.perspective = perspective
