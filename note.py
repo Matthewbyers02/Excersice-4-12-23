@@ -64,13 +64,15 @@ class Note:
             self.perspective = perspective
         
     def __invert__(self):
-        if self.perspective == 'b':
-            self.perspective = '#'
-        elif self.perspective == '#':
-            self.perspective = 'b'
+        if self.perspective == "b":
+            self.perspective = "#"
+        elif self.perspective == "#":
+            self.perspective = "b"
+            
         else:
-            return None
-        return Note(self.perspective)
+            self.perspective = None
+            
+        return Note(self.position, self.perspective)
         
     def __add__(self, num):
         placeholder = (self.position + num) / 12
